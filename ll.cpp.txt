@@ -45,6 +45,11 @@ public:
             
            // cout << "Invalid" << endl;
         }
+        else if (Loc == 1)
+        {
+            temp->next = head;
+            head= temp;
+        }
         else if (Loc <= count())
         {
             Node *temp1 = head;
