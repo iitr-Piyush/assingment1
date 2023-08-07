@@ -1,0 +1,121 @@
+#include <iostream>
+using namespace std;
+
+static int size = 100; 
+
+template <class T>
+class ArrayFun
+{
+    T arr[100];
+
+public:
+    int i;
+    ArrayFun()
+    {
+        for (i = 0; i < size; i++)
+        {
+            arr[i] = T(); 
+        }
+    }
+    void Insertion(T Item, int Pos)
+    {
+        if (Pos >= 0 && Pos < size)
+        {
+            arr[Pos] = Item;
+        }
+        else
+        {
+            cout << "Invalid position" << endl;
+        }
+    }
+    void Delete(int Pos)
+    {
+        if (Pos >= 0 && Pos < size)
+        {
+            arr[Pos] = T(); 
+        }
+        else
+        {
+            cout << "Invalid position" << endl;
+        }
+    }
+    int Searching(T Item)
+    {
+        for (i = 0; i < size; i++)
+        {
+            if (arr[i] == Item)
+            {
+                return i; 
+            }
+        }
+        return -1; // Item not found
+    }
+    void Display()
+    {
+        cout << "Array elements are : ";
+        for (i = 0; i < size; i++)
+        {
+            cout << arr[i] << " ";
+        }
+        cout << endl;
+    }
+};
+
+int main()
+{
+    ArrayFun<char> Arr1;
+    int choice, pos;
+    char value;
+
+    do
+    {
+        cout << "\n1. Insert an item\n2. Delete an item\n3. Search an item\n4. Display array\n0. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice)
+        {
+        case 1:
+            cout << "Enter the value to insert: ";
+            cin >> value;
+            cout << "Enter the position to insert at: ";
+            cin >> pos;
+            Arr1.Insertion(value, pos);
+            break;
+
+        case 2:
+            cout << "Enter the position to delete: ";
+            cin >> pos;
+            Arr1.Delete(pos);
+            break;
+
+        case 3:
+            cout << "Enter the value to search for: ";
+            cin >> value;
+            pos = Arr1.Searching(value);
+            if (pos != -1)
+            {
+                cout << "Item found at position: " << pos << endl;
+            }
+            else
+            {
+                cout << "Item not found" << endl;
+            }
+            break;
+
+        case 4:
+            Arr1.Display();
+            break;
+
+        case 0:
+            cout << "Exiting program." << endl;
+            break;
+
+        default:
+            cout << "Invalid choice. Try again." << endl;
+            break;
+        }
+    } while (choice != 0);
+
+    return 0;
+}
